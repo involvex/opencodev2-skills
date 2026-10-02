@@ -41,3 +41,25 @@ clients — state splits and each sees a different world.
 4. Myfritz/reverse-proxy: plain HTTP works; keep the same host port stable.
 5. If a client gets HTML instead of JSON, it is calling V1 routes — see the
    `opencode-v2-api` skill, not a server problem.
+
+## PWA installation (Add to Home Screen)
+
+The web UI is an installable PWA, but browsers only offer installation in a
+**secure context** (plus the manifest + service worker the server ships):
+
+- `http://127.0.0.1:<port>` / `http://localhost:<port>` → loopback is always
+  secure → installable.
+- `http://<lan-ip>:<port>` (e.g. `http://192.168.178.69:4000`) → plain HTTP
+  on LAN is NOT secure → no install prompt ("cannot be installed"). Same
+  app, same server version — only the origin differs.
+
+Ways to get an installable origin for the PC server:
+
+1. **HTTPS public URL (easiest)** — open the myfritz / tunnel / Tailscale
+   `https://` address in the mobile browser instead of the LAN IP.
+2. **Browser flag (LAN-only, no setup)** — in a Chromium browser open
+   `chrome://flags`, set *Insecure origins treated as secure* to
+   `http://<lan-ip>:<port>`, restart. Fragile across updates.
+3. **HTTPS on the PC (robust LAN)** — Caddy/Nginx reverse proxy to
+   `127.0.0.1:<port>` with a LAN-trusted cert (self-signed CA installed on
+   Android, or Tailscale Serve / Cloudflare Tunnel for a real cert).
