@@ -17,5 +17,6 @@ bunx skills add involvex/opencodev2-skills -g
 | `opencode-v2-api` | Calling `/api/*` endpoints, migrating V1 clients, debugging responses |
 | `opencode-v2-config` | Writing or migrating native V2 `opencode.json` |
 | `opencode-v2-serve` | Exposing a server (serve vs service, auth, pairing, remote access) |
-| `opencode-v2-plugins` | Building or porting V2 plugins |
+| `opencode-v2-plugins` | Building or porting V2 plugins (server/TUI) |
+| `opencode-v2-plugins-gui` | Building OpenCode Desktop GUI plugins (`./gui-experimental`) with panels, commands, IPC, main process |
 | `opencode-v2-mobile` | Wiring phone/remote clients (auth, directories, forms, models) |
